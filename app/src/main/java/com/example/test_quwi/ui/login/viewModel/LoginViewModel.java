@@ -8,16 +8,17 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.test_quwi.R;
 import com.example.test_quwi.common.utils.Result;
+import com.example.test_quwi.common.utils.UserCallback;
 import com.example.test_quwi.data.model.User;
 import com.example.test_quwi.domain.repository.LoginRepository;
 
-public class ChatViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
 
-    public ChatViewModel(LoginRepository loginRepository) {
+    public LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
@@ -30,14 +31,15 @@ public class ChatViewModel extends ViewModel {
     }
 
     public void login(String username, String password) {
-        Result<User> result = loginRepository.login(username, password);
-
-        if (result instanceof Result.Success) {
-            User data = ((Result.Success<User>) result).getData();
-            loginResult.setValue(new LoginResult(new UserView(data.getDisplayName())));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
+        UserCallback callback = userResult -> {
+            if (userResult instanceof Result.Success) {
+                User data = ((Result.Success<User>) userResult).getData();
+                loginResult.setValue(new LoginResult(new UserView(data.getDisplayName())));
+            } else {
+                loginResult.setValue(new LoginResult(R.string.login_failed));
+            }
+        };
+        loginRepository.login(username, password, callback);
     }
 
     public void loginDataChanged(String username, String password) {

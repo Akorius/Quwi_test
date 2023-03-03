@@ -1,6 +1,7 @@
 package com.example.test_quwi.domain.di;
 
 import com.example.test_quwi.data.LoginDataSource;
+import com.example.test_quwi.data.network.NetworkClient;
 import com.example.test_quwi.data.repository.ChatRepositoryImpl;
 import com.example.test_quwi.data.repository.LoginRepositoryImpl;
 import com.example.test_quwi.domain.repository.ChatRepository;
@@ -13,6 +14,8 @@ public class SimpleDIContainer {
     private static volatile ChatRepository chatRepository;
 
     private static volatile LoginDataSource dataSource;
+
+    private static volatile NetworkClient client;
 
     public static LoginRepository getLoginRepository() {
         if (loginRepository == null) {
@@ -35,4 +38,10 @@ public class SimpleDIContainer {
         return dataSource;
     }
 
+    public static NetworkClient getNetworkClient() {
+        if (client == null) {
+            client = new NetworkClient();
+        }
+        return client;
+    }
 }

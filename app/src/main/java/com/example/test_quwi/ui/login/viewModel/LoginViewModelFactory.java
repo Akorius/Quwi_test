@@ -12,8 +12,8 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(ChatViewModel.class)) {
-            return (T) new ChatViewModel(SimpleDIContainer.getLoginRepository());
+        if (modelClass.isAssignableFrom(LoginViewModel.class)) {
+            return (T) new LoginViewModel(SimpleDIContainer.getLoginRepository());
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

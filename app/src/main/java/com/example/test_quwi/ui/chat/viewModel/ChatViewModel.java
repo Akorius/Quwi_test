@@ -1,7 +1,5 @@
 package com.example.test_quwi.ui.chat.viewModel;
 
-import android.util.Patterns;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -9,9 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.test_quwi.R;
 import com.example.test_quwi.common.utils.Result;
 import com.example.test_quwi.data.model.Chat;
-import com.example.test_quwi.data.model.User;
 import com.example.test_quwi.domain.repository.ChatRepository;
-import com.example.test_quwi.domain.repository.LoginRepository;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.example.test_quwi.ui.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,12 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.test_quwi.databinding.ActivityLoginBinding;
-import com.example.test_quwi.ui.login.viewModel.ChatViewModel;
+import com.example.test_quwi.ui.login.viewModel.LoginViewModel;
 import com.example.test_quwi.ui.login.viewModel.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ChatViewModel loginViewModel;
+    private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
     @Override
@@ -32,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(ChatViewModel.class);
+                .get(LoginViewModel.class);
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
@@ -61,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 showLoginFailed(loginResult.getError());
             }
             if (loginResult.getData() != null) {
+                Toast.makeText(getApplicationContext(), "Success login", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent());
             }
         });

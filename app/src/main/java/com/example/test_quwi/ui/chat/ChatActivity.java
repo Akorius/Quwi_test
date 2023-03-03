@@ -17,11 +17,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.test_quwi.databinding.ActivityLoginBinding;
 import com.example.test_quwi.ui.chat.viewModel.ChatViewModelFactory;
-import com.example.test_quwi.ui.login.viewModel.ChatViewModel;
+import com.example.test_quwi.ui.login.viewModel.LoginViewModel;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private ChatViewModel chatViewModel;
+    private LoginViewModel chatViewModel;
     private ActivityLoginBinding binding;
 
     @Override
@@ -32,7 +32,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         chatViewModel = new ViewModelProvider(this, new ChatViewModelFactory())
-                .get(ChatViewModel.class);
+                .get(LoginViewModel.class);
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
